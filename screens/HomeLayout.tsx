@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import Home from "./main/Home";
 import About from "./main/About";
 import {
@@ -13,10 +13,37 @@ const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {
   return (
-    <DrawerContentScrollView {...props}>
+    <DrawerContentScrollView
+      contentContainerStyle={{
+        flex: 1,
+        paddingBottom: 20,
+        paddingTop: 20,
+        position: "relative",
+
+        margin: 0,
+      }}
+      {...props}
+    >
+      <View className=" p-0 m-0 relative mb-3 flex flex-row justify-between items-center pr-4">
+        <Image
+          className="w-[200px] h-[80px] m-0 -ml-4"
+          resizeMode="center"
+          source={require("../assets/logo2.png")}
+        />
+        <Pressable>
+          <AntDesign name="menu-unfold" size={20} color="black" />
+        </Pressable>
+      </View>
+
       <DrawerItemList {...props} />
+
       <DrawerItem
-        style={{ backgroundColor: "red", position: "absolute", bottom: 0 }}
+        style={{
+          position: "absolute",
+          bottom: 20,
+          left: 0,
+          right: 0,
+        }}
         icon={({}) => <AntDesign name="logout" size={20} color="black" />}
         label="Logout"
         onPress={() => alert("Link to help")}
@@ -45,11 +72,16 @@ const HomeLayout = () => {
       />
       <Drawer.Screen
         options={{
+          drawerStyle: {
+            display: "flex",
+            justifyContent: "flex-start",
+          },
+
           drawerIcon: ({ color, size }) => (
             <Ionicons
               name="md-information-circle-outline"
               size={24}
-              color="black"
+              color={color}
             />
           ),
         }}
