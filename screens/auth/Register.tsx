@@ -11,9 +11,11 @@ import {
 import { useState } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 const Register = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [password2Visible, setPassword2Visible] = useState<boolean>(false);
+  const navigation: any = useNavigation();
   return (
     <ScrollView className="flex-1  ">
       <LinearGradient
@@ -142,7 +144,7 @@ const Register = () => {
             </TouchableOpacity>
             <View className="mt-6 flex flex-row item-center justify-center">
               <Text className="text-gray-500">I already have an account.</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                 <Text className="text-[#007acc] font-bold ml-1">Login</Text>
               </TouchableOpacity>
             </View>
