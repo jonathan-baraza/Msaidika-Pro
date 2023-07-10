@@ -1,3 +1,5 @@
+import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Welcome from "./screens/Welcome";
@@ -8,7 +10,10 @@ import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
 SplashScreen.preventAutoHideAsync();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [isLoaded] = useFonts({
@@ -35,10 +40,14 @@ export default function App() {
   }
 
   return (
-    <View className="flex-1" onLayout={handleOnLayout}>
-      {/* <Welcome /> */}
-      {/* <Login /> */}
-      <Register />
-    </View>
+    <NavigationContainer>
+      <View className="flex-1" onLayout={handleOnLayout}>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Welcome" component={Welcome} />
+          <Drawer.Screen name="Login" component={Login} />
+          <Drawer.Screen name="Register" component={Register} />
+        </Drawer.Navigator>
+      </View>
+    </NavigationContainer>
   );
 }
