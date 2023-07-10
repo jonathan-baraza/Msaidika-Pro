@@ -7,8 +7,10 @@ import {
   Image,
 } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const Welcome = () => {
+  const navigation: any = useNavigation();
   return (
     <View
       className="flex-1 p-6 flex-col justify-between"
@@ -29,6 +31,7 @@ const Welcome = () => {
       </View>
       <View className="w-full">
         <TouchableOpacity
+          onPress={() => navigation.navigate("Register")}
           activeOpacity={0.5}
           className="w-full bg-[#007acc] p-3 rounded-lg flex items-center justify-center "
         >
@@ -40,17 +43,17 @@ const Welcome = () => {
           <View className="h-[1px] bg-gray-300 flex-1"></View>
         </View>
         <TouchableOpacity>
-          <View className="rounded-full w-[50px] mx-auto border border-gray-300 h-[50px] p-2 flex items-center justify-center">
+          <View className="rounded-full w-[50px] mx-auto border bg-white border-gray-300 h-[50px] flex items-center justify-center">
             <Image
               resizeMode="contain"
-              className="w-full"
+              className="w-[40px] h-[40px] rounded-full "
               source={require("../assets/google.png")}
             />
           </View>
         </TouchableOpacity>
         <View className="mt-6 flex flex-row item-center justify-center">
           <Text className="text-gray-500">I already have an account.</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text className="text-[#007acc] font-bold ml-1">Login</Text>
           </TouchableOpacity>
         </View>
