@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Welcome from "./screens/Welcome";
 import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
+import HomeLayout from "./screens/HomeLayout";
 import { useCallback } from "react";
 
 import { useFonts } from "expo-font";
@@ -64,6 +65,13 @@ export default function App() {
             }}
             name="Login"
             component={Login}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="HomeLayout"
+            component={HomeLayout}
           />
         </Stack.Navigator>
       </View>
