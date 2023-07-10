@@ -10,10 +10,11 @@ import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 
+//Prevent autohide splash screen until fonts are loaded
 SplashScreen.preventAutoHideAsync();
-const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [isLoaded] = useFonts({
@@ -42,11 +43,29 @@ export default function App() {
   return (
     <NavigationContainer>
       <View className="flex-1" onLayout={handleOnLayout}>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Welcome" component={Welcome} />
-          <Drawer.Screen name="Login" component={Login} />
-          <Drawer.Screen name="Register" component={Register} />
-        </Drawer.Navigator>
+        <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Welcome"
+            component={Welcome}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Register"
+            component={Register}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Login"
+            component={Login}
+          />
+        </Stack.Navigator>
       </View>
     </NavigationContainer>
   );
