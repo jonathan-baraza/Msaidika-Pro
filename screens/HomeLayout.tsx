@@ -1,17 +1,15 @@
-import { View, Text, StatusBar, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
+import Home from "./main/Home";
+import About from "./main/About";
 
-const Home = () => {
+const HomeLayout = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
+    <View className="flex-1">
+      {/* <Home /> */}
+      <About />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: StatusBar.currentHeight || 0,
-  },
-});
-export default Home;
+export default HomeLayout;

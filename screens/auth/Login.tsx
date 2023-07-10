@@ -74,6 +74,7 @@ const Login = () => {
         </View>
         <View className="w-full px-6">
           <TouchableOpacity
+            onPress={() => navigation.navigate("HomeLayout")}
             activeOpacity={0.5}
             className="w-full bg-[#007acc] p-3 rounded-lg flex items-center justify-center "
           >
