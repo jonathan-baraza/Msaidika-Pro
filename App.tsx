@@ -44,7 +44,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <View className="flex-1" onLayout={handleOnLayout}>
-        <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Navigator initialRouteName="HomeLayout">
           <Stack.Screen
             options={{
               headerShown: false,
