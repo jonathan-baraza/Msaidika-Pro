@@ -7,11 +7,13 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-import { Entypo, Ionicons, AntDesign } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {
+  const navigation: any = useNavigation();
   return (
     <DrawerContentScrollView
       contentContainerStyle={{
@@ -30,7 +32,7 @@ function CustomDrawerContent(props: any) {
           resizeMode="center"
           source={require("../assets/logo2.png")}
         />
-        <Pressable>
+        <Pressable onPress={() => props.navigation.closeDrawer()}>
           <AntDesign name="menu-unfold" size={20} color="black" />
         </Pressable>
       </View>
@@ -46,7 +48,7 @@ function CustomDrawerContent(props: any) {
         }}
         icon={({}) => <AntDesign name="logout" size={20} color="black" />}
         label="Logout"
-        onPress={() => alert("Link to help")}
+        onPress={() => navigation.navigate("Login")}
       />
     </DrawerContentScrollView>
   );
