@@ -8,14 +8,17 @@ import {
   StatusBar,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import LoaderIcon from "../../components/loaders/LoaderIcon";
 import Toast from "react-native-root-toast";
 import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
@@ -61,7 +64,7 @@ const Register = () => {
       console.log(error);
       let errMsg: any;
       if (error instanceof Error) {
-        errMsg = error.message;
+        errMsg = error.message.split(":")[1];
       } else {
         errMsg = "Some error occured, please try again later.";
       }
@@ -75,6 +78,18 @@ const Register = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        //User if authenticated
+        navigation.navigate("HomeLayout");
+      }
+    });
+    return () => {
+      //
+    };
+  }, []);
 
   return (
     <ScrollView className="flex-1  ">
