@@ -72,6 +72,15 @@ const Login = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         //User if authenticated
+        Toast.show("You have signed in...", {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.BOTTOM,
+          animation: true,
+          hideOnPress: false,
+          textStyle: {
+            fontSize: 12,
+          },
+        });
         navigation.navigate("HomeLayout");
       }
     });

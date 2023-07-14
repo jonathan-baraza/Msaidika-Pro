@@ -71,6 +71,7 @@ export default function App() {
             <Stack.Screen
               options={{
                 headerShown: false,
+                gestureEnabled: false,
               }}
               name="HomeLayout"
               component={HomeLayout}
