@@ -102,6 +102,7 @@ const HomeLayout = ({ navigation }: any) => {
       //cleanup
     };
   }, []);
+
   return (
     <>
       <Drawer.Navigator
