@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import LoaderIcon from "../../components/loaders/LoaderIcon";
 import Toast from "react-native-root-toast";
 import { auth } from "../../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,19 +30,33 @@ const Register = () => {
 
   const handleValidations = () => {
     if (!email || !username || !password || !password || !password2) {
-      return Toast.show("Please provide all inputs", {
+      Toast.show("Please provide all inputs", {
         duration: Toast.durations.SHORT,
         position: Toast.positions.BOTTOM,
         animation: true,
         hideOnPress: false,
       });
+    } else if (password !== password2) {
+      Toast.show("The passwords don't match", {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+      });
+    } else {
+      handleRegister();
     }
-    handleRegister();
   };
 
   const handleRegister = async () => {
     setLoading(true);
     try {
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(response);
     } catch (error) {
       console.log(error);
       let errMsg: any;
