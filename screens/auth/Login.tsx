@@ -10,12 +10,14 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-root-toast";
 import LoaderIcon from "../../components/loaders/LoaderIcon";
+import { auth } from "../../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
@@ -41,9 +43,43 @@ const Login = () => {
   };
 
   const handleRegister = async () => {
+    setLoading(true);
     try {
-    } catch (error) {}
+      const response = await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.log(error);
+      let errMsg: any;
+      if (error instanceof Error) {
+        errMsg = error.message.split(":")[1];
+      } else {
+        errMsg = "Some error occured, please try again later.";
+      }
+      Toast.show(errMsg, {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+        textStyle: {
+          fontSize: 12,
+        },
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        //User if authenticated
+        navigation.navigate("HomeLayout");
+      }
+    });
+    return () => {
+      //
+    };
+  }, []);
+
   return (
     <LinearGradient
       start={{ x: 0, y: 0.5 }}
@@ -73,6 +109,8 @@ const Login = () => {
               className="flex-1 ml-2"
               inputMode="email"
               placeholder="Type your email"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
 
@@ -85,6 +123,8 @@ const Login = () => {
               inputMode="text"
               secureTextEntry={!passwordVisible}
               placeholder="Type your password"
+              value={password}
+              onChangeText={setPassword}
             />
             <TouchableOpacity
               onPress={() => setPasswordVisible(!passwordVisible)}
