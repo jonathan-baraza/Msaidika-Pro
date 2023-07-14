@@ -12,6 +12,8 @@ import { useState } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import LoaderIcon from "../../components/loaders/LoaderIcon";
+
 const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
@@ -19,7 +21,20 @@ const Register = () => {
   const [password2, setPassword2] = useState<string>("");
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [password2Visible, setPassword2Visible] = useState<boolean>(false);
+
+  const [loading, setLoading] = useState<boolean>(false);
   const navigation: any = useNavigation();
+
+  const handleValidations = () => {
+    if (!email || !username || !password || !password || !password2) {
+    }
+    handleRegister();
+  };
+
+  const handleRegister = async () => {
+    setLoading(true);
+  };
+
   return (
     <ScrollView className="flex-1  ">
       <LinearGradient
@@ -41,6 +56,7 @@ const Register = () => {
               Step into a world of limitless possibilities.
             </Text>
           </View>
+          {loading && <LoaderIcon />}
           {/* Inputs */}
           <View className="w-full mt-8 space-y-3 px-6 flex-1">
             <View className="flex flex-row items-center w-full bg-[#f4f4f4] rounded-lg p-3">
@@ -68,6 +84,8 @@ const Register = () => {
                 className="flex-1 ml-2"
                 inputMode="text"
                 placeholder="Type your username"
+                value={username}
+                onChangeText={setUsername}
               />
             </View>
             <View className="flex flex-row items-center w-full bg-[#f4f4f4] rounded-lg p-3">
@@ -84,6 +102,8 @@ const Register = () => {
                 inputMode="text"
                 secureTextEntry={!passwordVisible}
                 placeholder="Set your password"
+                value={password}
+                onChangeText={setPassword}
               />
               <TouchableOpacity
                 onPress={() => setPasswordVisible(!passwordVisible)}
@@ -111,6 +131,8 @@ const Register = () => {
                 inputMode="text"
                 secureTextEntry={!password2Visible}
                 placeholder="Confirm your password"
+                value={password2}
+                onChangeText={setPassword2}
               />
               <TouchableOpacity
                 onPress={() => setPassword2Visible(!password2Visible)}
@@ -128,6 +150,7 @@ const Register = () => {
           {/* Footer part */}
           <View className="w-full px-6">
             <TouchableOpacity
+              onPress={handleValidations}
               activeOpacity={0.5}
               className="w-full bg-[#007acc] p-3 rounded-lg flex items-center justify-center "
             >
