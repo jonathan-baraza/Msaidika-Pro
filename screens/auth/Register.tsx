@@ -13,6 +13,10 @@ import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 const Register = () => {
+  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [password2, setPassword2] = useState<string>("");
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [password2Visible, setPassword2Visible] = useState<boolean>(false);
   const navigation: any = useNavigation();
@@ -47,6 +51,8 @@ const Register = () => {
                 className="flex-1 ml-2"
                 inputMode="email"
                 placeholder="Type your email"
+                value={email}
+                onChangeText={setEmail}
               />
             </View>
             <View className="flex flex-row items-center w-full bg-[#f4f4f4] rounded-lg p-3">
