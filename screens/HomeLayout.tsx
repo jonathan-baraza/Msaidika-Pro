@@ -1,4 +1,5 @@
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, ToastAndroid } from "react-native";
+import { useState } from "react";
 import Home from "./main/Home";
 import About from "./main/About";
 import {
@@ -9,11 +10,15 @@ import {
 } from "@react-navigation/drawer";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
+import { signOut } from "firebase/auth";
+import { auth } from "../config/firebase";
+import LoaderIcon from "../components/loaders/LoaderIcon";
+import Toast from "react-native-root-toast";
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {
   const navigation: any = useNavigation();
+
   return (
     <DrawerContentScrollView
       contentContainerStyle={{
@@ -48,49 +53,85 @@ function CustomDrawerContent(props: any) {
         }}
         icon={({}) => <AntDesign name="logout" size={20} color="black" />}
         label="Logout"
-        onPress={() => navigation.navigate("Login")}
+        onPress={props.handleLogout}
       />
     </DrawerContentScrollView>
   );
 }
 
 const HomeLayout = () => {
-  return (
-    <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
-      <Drawer.Screen
-        options={{
-          title: "Msaidika ",
-          drawerStyle: {
-            paddingTop: 20,
-          },
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="md-home-outline" size={24} color="black" />
-          ),
-        }}
-        name="Home"
-        component={Home}
-      />
-      <Drawer.Screen
-        options={{
-          drawerStyle: {
-            display: "flex",
-            justifyContent: "flex-start",
-          },
+  const [loading, setLoading] = useState<boolean>(false);
 
-          drawerIcon: ({ color, size }) => (
-            <Ionicons
-              name="md-information-circle-outline"
-              size={24}
-              color={color}
-            />
-          ),
-        }}
-        name="About"
-        component={About}
-      />
-    </Drawer.Navigator>
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      const response = await signOut(auth);
+      Toast.show("You have been logged out", {
+        duration: Toast.durations.SHORT,
+        animation: true,
+        textStyle:{
+          fontSize:12
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      let errMsg: any;
+      if (error instanceof Error) {
+        errMsg = error.message;
+      } else {
+        errMsg = "Some error occured, please try again later.";
+      }
+      Toast.show(errMsg, {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+  return (
+    <>
+      <Drawer.Navigator
+        drawerContent={(props) => (
+          <CustomDrawerContent handleLogout={handleLogout} {...props} />
+        )}
+      >
+        <Drawer.Screen
+          options={{
+            title: "Msaidika ",
+            drawerStyle: {
+              paddingTop: 20,
+            },
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="md-home-outline" size={24} color="black" />
+            ),
+          }}
+          name="Home"
+          component={Home}
+        />
+        <Drawer.Screen
+          options={{
+            drawerStyle: {
+              display: "flex",
+              justifyContent: "flex-start",
+            },
+
+            drawerIcon: ({ color, size }) => (
+              <Ionicons
+                name="md-information-circle-outline"
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+          name="About"
+          component={About}
+        />
+      </Drawer.Navigator>
+      {loading && <LoaderIcon />}
+    </>
   );
 };
 
