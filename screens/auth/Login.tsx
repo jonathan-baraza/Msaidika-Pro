@@ -14,9 +14,30 @@ import { useState } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-root-toast";
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const navigation: any = useNavigation();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleValidation = () => {
+    if (!email || !password) {
+      Toast.show("Please provide all inputs", {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+        textStyle: {
+          fontSize: 12,
+        },
+      });
+    } else {
+      handleRegister();
+    }
+  };
+
+  const handleRegister = async () => {};
   return (
     <LinearGradient
       start={{ x: 0, y: 0.5 }}
@@ -74,7 +95,7 @@ const Login = () => {
         </View>
         <View className="w-full px-6">
           <TouchableOpacity
-            onPress={() => navigation.navigate("HomeLayout")}
+            onPress={handleValidation}
             activeOpacity={0.5}
             className="w-full bg-[#007acc] p-3 rounded-lg flex items-center justify-center "
           >
