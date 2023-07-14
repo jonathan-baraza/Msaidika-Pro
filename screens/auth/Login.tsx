@@ -15,11 +15,14 @@ import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-root-toast";
+import LoaderIcon from "../../components/loaders/LoaderIcon";
+
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const navigation: any = useNavigation();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleValidation = () => {
     if (!email || !password) {
@@ -37,7 +40,10 @@ const Login = () => {
     }
   };
 
-  const handleRegister = async () => {};
+  const handleRegister = async () => {
+    try {
+    } catch (error) {}
+  };
   return (
     <LinearGradient
       start={{ x: 0, y: 0.5 }}
@@ -124,6 +130,7 @@ const Login = () => {
           </View>
         </View>
       </ScrollView>
+      {loading && <LoaderIcon />}
     </LinearGradient>
   );
 };
