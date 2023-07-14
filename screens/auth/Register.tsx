@@ -65,7 +65,6 @@ const Register = () => {
         email,
         password
       );
-      console.log(response);
     } catch (error) {
       console.log(error);
       let errMsg: any;
