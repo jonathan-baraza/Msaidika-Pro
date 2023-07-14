@@ -13,6 +13,8 @@ import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import LoaderIcon from "../../components/loaders/LoaderIcon";
+import Toast from "react-native-root-toast";
+import { auth } from "../../config/firebase";
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
@@ -27,12 +29,36 @@ const Register = () => {
 
   const handleValidations = () => {
     if (!email || !username || !password || !password || !password2) {
+      return Toast.show("Please provide all inputs", {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+      });
     }
     handleRegister();
   };
 
   const handleRegister = async () => {
     setLoading(true);
+    try {
+    } catch (error) {
+      console.log(error);
+      let errMsg: any;
+      if (error instanceof Error) {
+        errMsg = error.message;
+      } else {
+        errMsg = "Some error occured, please try again later.";
+      }
+      Toast.show(errMsg, {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
