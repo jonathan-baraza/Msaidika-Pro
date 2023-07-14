@@ -1,5 +1,5 @@
 import { View, Text, Image, Pressable, ToastAndroid } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Home from "./main/Home";
 import About from "./main/About";
 import {
@@ -17,8 +17,6 @@ import Toast from "react-native-root-toast";
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {
-  const navigation: any = useNavigation();
-
   return (
     <DrawerContentScrollView
       contentContainerStyle={{
@@ -59,8 +57,9 @@ function CustomDrawerContent(props: any) {
   );
 }
 
-const HomeLayout = () => {
+const HomeLayout = ({ navigation }: any) => {
   const [loading, setLoading] = useState<boolean>(false);
+  // const navigation: any = useNavigation();
 
   const handleLogout = async () => {
     setLoading(true);
@@ -69,9 +68,9 @@ const HomeLayout = () => {
       Toast.show("You have been logged out", {
         duration: Toast.durations.SHORT,
         animation: true,
-        textStyle:{
-          fontSize:12
-        }
+        textStyle: {
+          fontSize: 12,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -91,6 +90,18 @@ const HomeLayout = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        console.log("someone logged out ..this is home layout btw");
+        navigation.navigate("Login");
+      }
+    });
+    return () => {
+      //cleanup
+    };
+  }, []);
   return (
     <>
       <Drawer.Navigator
