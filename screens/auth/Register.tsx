@@ -38,6 +38,9 @@ const Register = () => {
         position: Toast.positions.BOTTOM,
         animation: true,
         hideOnPress: false,
+        textStyle: {
+          fontSize: 12,
+        },
       });
     } else if (password !== password2) {
       Toast.show("The passwords don't match", {
@@ -45,6 +48,9 @@ const Register = () => {
         position: Toast.positions.BOTTOM,
         animation: true,
         hideOnPress: false,
+        textStyle: {
+          fontSize: 12,
+        },
       });
     } else {
       handleRegister();
@@ -73,6 +79,9 @@ const Register = () => {
         position: Toast.positions.BOTTOM,
         animation: true,
         hideOnPress: false,
+        textStyle: {
+          fontSize: 12,
+        },
       });
     } finally {
       setLoading(false);
