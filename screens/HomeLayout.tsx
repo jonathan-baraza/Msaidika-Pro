@@ -65,7 +65,7 @@ const HomeLayout = ({ navigation }: any) => {
     navigation.addListener("beforeRemove", (e: any) => {
       e.preventDefault();
       Toast.show("You cannot go back", {
-        duration: Toast.durations.SHORT,
+        duration: 1000,
         animation: true,
         hideOnPress: true,
         textStyle: {
