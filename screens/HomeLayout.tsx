@@ -61,6 +61,20 @@ const HomeLayout = ({ navigation }: any) => {
   const [loading, setLoading] = useState<boolean>(false);
   // const navigation: any = useNavigation();
 
+  useEffect(() => {
+    navigation.addListener("beforeRemove", (e: any) => {
+      e.preventDefault();
+      Toast.show("You cannot go back", {
+        duration: Toast.durations.SHORT,
+        animation: true,
+        hideOnPress: true,
+        textStyle: {
+          fontSize: 12,
+        },
+      });
+    });
+  }, []);
+
   const handleLogout = async () => {
     setLoading(true);
     try {
