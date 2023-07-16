@@ -63,15 +63,17 @@ const HomeLayout = ({ navigation }: any) => {
 
   useEffect(() => {
     navigation.addListener("beforeRemove", (e: any) => {
-      e.preventDefault();
-      Toast.show("You cannot go back", {
-        duration: 1000,
-        animation: true,
-        hideOnPress: true,
-        textStyle: {
-          fontSize: 12,
-        },
-      });
+      if (auth.currentUser?.email) {
+        e.preventDefault();
+        Toast.show("You cannot go back", {
+          duration: 1000,
+          animation: true,
+          hideOnPress: true,
+          textStyle: {
+            fontSize: 12,
+          },
+        });
+      }
     });
   }, []);
 
