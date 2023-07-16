@@ -38,14 +38,20 @@ const Login = () => {
         },
       });
     } else {
-      handleRegister();
+      handleSignIn();
     }
   };
 
-  const handleRegister = async () => {
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
+
+  const handleSignIn = async () => {
     setLoading(true);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
+      clearInputs();
     } catch (error) {
       console.log(error);
       let errMsg: any;
@@ -87,6 +93,7 @@ const Login = () => {
             fontSize: 12,
           },
         });
+
         navigation.navigate("HomeLayout");
       }
     });
