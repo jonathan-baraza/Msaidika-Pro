@@ -68,6 +68,12 @@ const Login = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (auth?.currentUser) {
+  //     navigation.navigate("HomeLayout");
+  //   }
+  // }, []);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
