@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { useState, useEffect } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
@@ -65,6 +66,7 @@ const Register = () => {
         email,
         password
       );
+      clearInputs();
     } catch (error) {
       console.log(error);
       let errMsg: any;
@@ -85,6 +87,39 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleGoogleSignUp = async () => {
+    try {
+      // const response = await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.log("google error");
+      console.log(error);
+      let errMsg: any;
+      if (error instanceof Error) {
+        errMsg = error.message.split(":")[1];
+      } else {
+        errMsg = "Some error occured, please try again later.";
+      }
+      Toast.show(errMsg, {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        animation: true,
+        hideOnPress: false,
+        textStyle: {
+          fontSize: 12,
+        },
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearInputs = () => {
+    setEmail("");
+    setUsername("");
+    setPassword("");
+    setPassword2("");
   };
 
   useEffect(() => {
@@ -228,11 +263,13 @@ const Register = () => {
             </View>
             <TouchableOpacity>
               <View className="rounded-full w-[50px] mx-auto border bg-white border-gray-300 h-[50px] flex items-center justify-center">
-                <Image
-                  resizeMode="contain"
-                  className="w-[40px] h-[40px] rounded-full "
-                  source={require("../../assets/google.png")}
-                />
+                <Pressable onPress={handleGoogleSignUp}>
+                  <Image
+                    resizeMode="contain"
+                    className="w-[40px] h-[40px] rounded-full "
+                    source={require("../../assets/google.png")}
+                  />
+                </Pressable>
               </View>
             </TouchableOpacity>
             <View className="mt-6 flex flex-row item-center justify-center">
