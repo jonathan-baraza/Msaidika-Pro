@@ -29,6 +29,12 @@
     },
     "plugins": [
       "@react-native-google-signin/google-signin"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bc784fc7-89d2-4230-9d0b-c62272a92436"
+      }
+    },
+    "owner": "jonathan_baraza"
   }
 }
