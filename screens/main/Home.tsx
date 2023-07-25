@@ -137,7 +137,7 @@ const Home = () => {
         {/* Community card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("house");
+            handleCardPressed("community");
           }}
           className="w-1/2 p-4"
         >
@@ -158,7 +158,7 @@ const Home = () => {
         {/* Emergency card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("house");
+            handleCardPressed("emergency");
           }}
           className="w-1/2 p-4"
         >
