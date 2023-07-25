@@ -8,12 +8,20 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import {
+  Ionicons,
+  AntDesign,
+  SimpleLineIcons,
+  Octicons,
+} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
 import LoaderIcon from "../components/loaders/LoaderIcon";
 import Toast from "react-native-root-toast";
+import Profile from "./main/Profile";
+import Help from "./main/Help";
+import SPApplication from "./main/SPApplication";
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {
@@ -128,17 +136,45 @@ const HomeLayout = ({ navigation }: any) => {
       >
         <Drawer.Screen
           options={{
-            title: "Msaidika ",
+            title: "Home ",
             drawerStyle: {
               paddingTop: 20,
             },
             drawerIcon: ({ color, size }) => (
-              <Ionicons name="md-home-outline" size={24} color="black" />
+              <Ionicons name="md-home-outline" size={22} color="black" />
             ),
             headerShown: false,
           }}
           name="Home"
           component={Home}
+        />
+        <Drawer.Screen
+          options={{
+            title: "My profile ",
+            drawerStyle: {
+              paddingTop: 20,
+            },
+            drawerIcon: ({ color, size }) => (
+              <AntDesign name="user" size={22} color="black" />
+            ),
+            headerShown: false,
+          }}
+          name="Profile"
+          component={Profile}
+        />
+        <Drawer.Screen
+          options={{
+            title: "Provide Service ",
+            drawerStyle: {
+              paddingTop: 20,
+            },
+            drawerIcon: ({ color, size }) => (
+              <Octicons name="gear" size={24} color="black" />
+            ),
+            headerShown: false,
+          }}
+          name="becomesp"
+          component={SPApplication}
         />
         <Drawer.Screen
           options={{
@@ -157,6 +193,20 @@ const HomeLayout = ({ navigation }: any) => {
           }}
           name="About"
           component={About}
+        />
+        <Drawer.Screen
+          options={{
+            drawerStyle: {
+              display: "flex",
+              justifyContent: "flex-start",
+            },
+
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="help-circle-outline" size={24} color={color} />
+            ),
+          }}
+          name="Help"
+          component={Help}
         />
       </Drawer.Navigator>
       {loading && <LoaderIcon />}
