@@ -10,6 +10,7 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-root-toast";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Home = () => {
   const navigation: any = useNavigation();
@@ -36,7 +37,19 @@ const Home = () => {
           source={require("../../assets/logo2.png")}
         />
       </View>
-      <View className="flex-1 flex-row flex-wrap bg-[#f2ffff] px-1">
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        overScrollMode={"never"}
+        contentContainerStyle={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          flex: 1,
+          paddingTop: "10%",
+        }}
+        className="bg-[#f2ffff] px-1 "
+      >
         {/* Job card */}
         <Pressable
           onPress={() => {
@@ -84,7 +97,7 @@ const Home = () => {
           onPress={() => {
             handleCardPressed("food");
           }}
-          className="w-1/2 p-4"
+          className="w-1/2 p-4 my-[2%]"
         >
           <View className="bg-white rounded-lg flex overflow-hidden  shadow shadow-xl shadow-black">
             <Image
@@ -105,7 +118,7 @@ const Home = () => {
           onPress={() => {
             handleCardPressed("house");
           }}
-          className="w-1/2 p-4"
+          className="w-1/2 p-4 my-[2%]"
         >
           <View className="bg-white rounded-lg flex overflow-hidden  shadow shadow-xl shadow-black">
             <Image
@@ -162,7 +175,7 @@ const Home = () => {
             </View>
           </View>
         </Pressable>
-      </View>
+      </ScrollView>
     </View>
   );
 };
