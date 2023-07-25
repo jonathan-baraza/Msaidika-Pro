@@ -135,6 +135,7 @@ const HomeLayout = ({ navigation }: any) => {
             drawerIcon: ({ color, size }) => (
               <Ionicons name="md-home-outline" size={24} color="black" />
             ),
+            headerShown: false,
           }}
           name="Home"
           component={Home}
