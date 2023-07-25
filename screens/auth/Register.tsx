@@ -17,9 +17,17 @@ import LoaderIcon from "../../components/loaders/LoaderIcon";
 import Toast from "react-native-root-toast";
 import { auth } from "../../config/firebase";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithCredential,
   onAuthStateChanged,
 } from "firebase/auth";
+
+import * as Google from "expo-auth-session/providers/google";
+import * as WebBrowser from "expo-web-browser";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from "@env";
+WebBrowser.maybeCompleteAuthSession();
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
@@ -31,6 +39,26 @@ const Register = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const navigation: any = useNavigation();
+
+  //google sign in state
+  const [useInfo, setUserInfo] = useState<any>("");
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    androidClientId: ANDROID_CLIENT_ID,
+    // expoClientId: EXPO_CLIENT_ID,
+  });
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { id_token } = response.params;
+
+      const credential = GoogleAuthProvider.credential(id_token);
+      // signInWithCredential(auth, credential);
+    } else {
+      console.log("error response");
+      console.log(response?.type);
+    }
+  }, [response]);
 
   const handleValidations = () => {
     if (!email || !username || !password || !password || !password2) {
@@ -91,7 +119,9 @@ const Register = () => {
 
   const handleGoogleSignUp = async () => {
     try {
-      // const response = await signInWithPopup(auth, provider);
+      await promptAsync();
+      // console.log("google response");
+      // console.log(response);
     } catch (error) {
       console.log("google error");
       console.log(error);
