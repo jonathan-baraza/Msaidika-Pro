@@ -154,11 +154,11 @@ const Home = () => {
               className="w-full h-[100px] "
               resizeMode="cover"
               source={{
-                uri: "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-169741.jpg?size=626&ext=jpg&ga=GA1.2.1480004811.1676452419&semt=sph",
+                uri: "https://img.freepik.com/free-vector/vector-red-police-car-top-light-glowing-dark-black_134830-785.jpg?size=626&ext=jpg&ga=GA1.2.1480004811.1676452419&semt=sph",
               }}
             />
             <View className="p-3 flex justify-center">
-              <Text className="font-bold text-center">Find houses</Text>
+              <Text className="font-bold text-center">Emergency</Text>
             </View>
           </View>
         </Pressable>
