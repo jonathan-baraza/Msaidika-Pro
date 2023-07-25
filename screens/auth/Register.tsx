@@ -45,7 +45,7 @@ const Register = () => {
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     androidClientId: ANDROID_CLIENT_ID,
-    // expoClientId: EXPO_CLIENT_ID,
+    expoClientId: EXPO_CLIENT_ID,
   });
 
   useEffect(() => {
