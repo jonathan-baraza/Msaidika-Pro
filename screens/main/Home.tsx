@@ -112,7 +112,7 @@ const Home = () => {
               className="w-full h-[100px] "
               resizeMode="cover"
               source={{
-                uri: "https://img.freepik.com/premium-photo/truck-summer-road-poland-trucker-highway-lorry-doing-logistics-work-semi-trailer-with-driver-big-cargo-car-drive-freight-delivery-transport-export-industry-container-with-goods_250132-648.jpg?size=626&ext=jpg&ga=GA1.1.1480004811.1676452419&semt=sph",
+                uri: "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-169741.jpg?size=626&ext=jpg&ga=GA1.2.1480004811.1676452419&semt=sph",
               }}
             />
             <View className="p-3 flex justify-center">
