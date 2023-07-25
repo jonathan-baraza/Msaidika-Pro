@@ -120,6 +120,48 @@ const Home = () => {
             </View>
           </View>
         </Pressable>
+
+        {/* Community card */}
+        <Pressable
+          onPress={() => {
+            handleCardPressed("house");
+          }}
+          className="w-1/2 p-4"
+        >
+          <View className="bg-white rounded-lg flex overflow-hidden  shadow shadow-xl shadow-black">
+            <Image
+              className="w-full h-[100px] "
+              resizeMode="cover"
+              source={{
+                uri: "https://img.freepik.com/free-vector/social-network-connections_1010-422.jpg?size=626&ext=jpg&ga=GA1.2.1480004811.1676452419&semt=sph",
+              }}
+            />
+            <View className="p-3 flex justify-center">
+              <Text className="font-bold text-center">Community</Text>
+            </View>
+          </View>
+        </Pressable>
+
+        {/* Emergency card */}
+        <Pressable
+          onPress={() => {
+            handleCardPressed("house");
+          }}
+          className="w-1/2 p-4"
+        >
+          <View className="bg-white rounded-lg flex overflow-hidden  shadow shadow-xl shadow-black">
+            <Image
+              className="w-full h-[100px] "
+              resizeMode="cover"
+              source={{
+                uri: "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-169741.jpg?size=626&ext=jpg&ga=GA1.2.1480004811.1676452419&semt=sph",
+              }}
+            />
+            <View className="p-3 flex justify-center">
+              <Text className="font-bold text-center">Find houses</Text>
+            </View>
+          </View>
+        </Pressable>
       </View>
     </View>
   );
