@@ -4,7 +4,7 @@ import { PostType } from "../../types/posts";
 
 const PostItem = ({ post }: { post: PostType }) => {
   return (
-    <View className="w-full  ">
+    <View className="w-full my-3 border-b border-gray-200 pb-6 ">
       {/* Post header */}
       <View className="w-full flex-row justify-between  ">
         <View className="flex-row items-center">
