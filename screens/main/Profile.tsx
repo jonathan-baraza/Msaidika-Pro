@@ -21,7 +21,7 @@ const Profile = () => {
   });
   return (
     <MenuCover>
-      <ScrollView className="bg-red">
+      <ScrollView showsVerticalScrollIndicator={false} className="bg-red">
         <View className="flex-1 items-center space-y-3  p-4">
           {/* Name of the user */}
           <Text className="font-bold text-xl text-center mb-3">
