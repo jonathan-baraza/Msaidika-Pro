@@ -22,6 +22,9 @@ module.exports = {
         rb_bold: ["rb-bold"],
         rb_xbold: ["rb-xbold"],
       },
+      colors: {
+        primary: "#007acc",
+      },
     },
   },
   plugins: [],
