@@ -124,18 +124,20 @@ const Profile = () => {
               Jonathan's recent Posts
             </Text>
 
+            {/* <PostItem post={myPost} />
             <PostItem post={myPost} />
             <PostItem post={myPost} />
             <PostItem post={myPost} />
-            <PostItem post={myPost} />
-            <PostItem post={myPost} />
+            <PostItem post={myPost} /> */}
 
-            {/* <FlatList
-              className="h-[50vh]"
+            <FlatList
+              className="h-[60vh]"
+              showsVerticalScrollIndicator={false}
+              // overScrollMode="never"
               data={[myPost, myPost, myPost, myPost]}
               keyExtractor={(post, index) => index.toString()}
               renderItem={({ item }) => <PostItem post={item} />}
-            /> */}
+            />
           </View>
         </View>
       </ScrollView>
