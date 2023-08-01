@@ -2,6 +2,7 @@ import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import MenuCover from "../../layouts/MenuCover";
 import { Entypo } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Profile = () => {
   return (
@@ -31,6 +32,28 @@ const Profile = () => {
           Some want it to happen, some wish it would happen, but I make it
           happen.
         </Text>
+        <View className="w-full pt-4 flex flex-row items-center justify-between">
+          <View className="w-[55%] ">
+            <TouchableOpacity
+              activeOpacity={0.8}
+              className="bg-primary  p-[14px] rounded-lg"
+            >
+              <Text className="text-white text-xs text-center">
+                Become Service Provider
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View className="w-[40%]">
+            <TouchableOpacity
+              activeOpacity={0.8}
+              className="bg-white border  p-[14px] border-gray-200 rounded-lg"
+            >
+              <Text className="text-primary w-full text-xs text-center ">
+                Edit Profile
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </MenuCover>
   );
