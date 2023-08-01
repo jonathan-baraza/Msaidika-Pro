@@ -1,11 +1,14 @@
 import { View, Text } from "react-native";
 import React from "react";
+import MenuCover from "../../layouts/MenuCover";
 
 const Profile = () => {
   return (
-    <View>
-      <Text>Profile</Text>
-    </View>
+    <MenuCover>
+      <View>
+        <Text>Profile</Text>
+      </View>
+    </MenuCover>
   );
 };
 
