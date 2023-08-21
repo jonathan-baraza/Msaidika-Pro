@@ -166,7 +166,7 @@ const Home = () => {
         {/* Food card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("food");
+             navigation.navigate("Food");
           }}
           className="w-1/2 p-4 my-[2%]"
         >
@@ -187,7 +187,7 @@ const Home = () => {
         {/* House card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("house");
+             navigation.navigate("Houses");
           }}
           className="w-1/2 p-4 my-[2%]"
         >
@@ -208,7 +208,7 @@ const Home = () => {
         {/* Community card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("community");
+            navigation.navigate("Community");
           }}
           className="w-1/2 p-4"
         >
@@ -229,7 +229,7 @@ const Home = () => {
         {/* Emergency card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("emergency");
+             navigation.navigate("Emergency");
           }}
           className="w-1/2 p-4"
         >
