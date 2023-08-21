@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import MenuCover from "../../layouts/MenuCover";
 
 const Transport = () => {
   return (
-    <View>
-      <Text>Transport</Text>
-    </View>
-  )
-}
+    <MenuCover>
+      <View>
+        <Text>Transport</Text>
+      </View>
+    </MenuCover>
+  );
+};
 
-export default Transport
+export default Transport;
