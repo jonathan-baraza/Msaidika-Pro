@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import MenuCover from "../../layouts/MenuCover";
 
 const Houses = () => {
   return (
-    <View>
-      <Text>Houses</Text>
-    </View>
-  )
-}
+    <MenuCover>
+      <View>
+        <Text>Houses</Text>
+      </View>
+    </MenuCover>
+  );
+};
 
-export default Houses
+export default Houses;
