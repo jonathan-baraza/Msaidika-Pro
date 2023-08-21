@@ -7,10 +7,76 @@ import {
   StatusBar,
 } from "react-native";
 import { Ionicons, AntDesign, FontAwesome5 } from "@expo/vector-icons";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-root-toast";
 import { ScrollView } from "react-native-gesture-handler";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Community from "../app/Community";
+import Emergency from "../app/Emergency";
+import Food from "../app/Food";
+import Houses from "../app/Houses";
+import Jobs from "../app/Jobs";
+import Transport from "../app/Transport";
+const Stack = createNativeStackNavigator();
+
+function MyStack() {
+  return (
+    <Stack.Navigator initialRouteName="MainHome" >
+      <Stack.Screen
+        name="MainHome"
+        component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Community"
+        component={Community}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Emergency"
+        component={Emergency}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Food"
+        component={Food}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Houses"
+        component={Houses}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Jobs"
+        component={Jobs}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Transport"
+        component={Transport}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+
 
 const Home = () => {
   const navigation: any = useNavigation();
@@ -58,7 +124,7 @@ const Home = () => {
         {/* Job card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("job");
+            navigation.navigate("Jobs");
           }}
           className="w-1/2 p-4"
         >
@@ -79,7 +145,7 @@ const Home = () => {
         {/* Transport card */}
         <Pressable
           onPress={() => {
-            handleCardPressed("transport");
+            navigation.navigate("Transport");
           }}
           className="w-1/2 p-4"
         >
@@ -190,4 +256,4 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
 });
-export default Home;
+export default MyStack;
